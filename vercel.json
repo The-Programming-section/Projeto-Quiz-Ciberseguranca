@@ -5,7 +5,7 @@
   "functions": {
     "api/index.js": {
       "maxDuration": 30,
-      "includeFiles": "quiz_cyberseguranca/backend/src/supabase-ca.crt"
+      "includeFiles": "backend/src/supabase-ca.crt"
     }
   },
   "rewrites": [
@@ -15,4 +15,3 @@
     }
   ]
 }
-

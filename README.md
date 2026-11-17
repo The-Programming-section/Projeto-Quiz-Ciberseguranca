@@ -1,111 +1,59 @@
-# CyberQuiz — Quiz de Cibersegurança
+# Tech Trivia — Quiz de Cibersegurança
 
-Projeto acadêmico de uma aplicação web educacional para testar e ampliar conhecimentos sobre cibersegurança por meio de perguntas interativas.
+Projeto acadêmico 2026.2 de João, Maria e Felipe. HTML, CSS e JavaScript sem frameworks, API Node.js e PostgreSQL. Quiz Certo/Errado, categorias, explicações, fontes e estatísticas. Placar temporário no navegador; ranking e persistência de pontuações são objetivos históricos ainda não implementados.
 
-**Período:** 2026.2  
-**Integrantes:** João, Maria e Felipe  
-**Tecnologias previstas:** HTML5, CSS3, JavaScript e PostgreSQL
+## Estrutura
 
-## Sobre o projeto
+- frontend/: HTML, js/, css/ e img/.
+- backend/src/: API, servidor local, configuração e certificado TLS.
+- backend/teste/: testes locais e suíte original de integração.
+- api/index.js: adaptador serverless Vercel.
+- scripts/: build e executor da integração.
+- database/: documentação e script de usuário PostgreSQL.
+- docs/: documentação acadêmica, ZIP, DOCX e templates em doc_date/.
+- docs/historico/: documentos e configurações anteriores.
 
-O CyberQuiz propõe uma experiência de aprendizado com perguntas de múltipla escolha sobre segurança digital, ameaças cibernéticas, proteção de dados e boas práticas.
+## Instalação e execução
 
-A aplicação deverá permitir que os participantes respondam a perguntas, acompanhem seu desempenho e consultem um ranking de pontuações.
+Requer Node.js 24.x e npm. Execute na raiz de Projeto-Quiz-Ciberseguranca, não no Career Dreamer externo:
 
-## Objetivos
+~~~powershell
+npm.cmd ci
+Copy-Item backend/.env.example backend/.env
+# Preencha backend/.env com as credenciais do banco local.
+npm.cmd start
+~~~
 
-- Promover a conscientização sobre cibersegurança.
-- Testar conhecimentos sobre segurança digital.
-- Organizar perguntas por categorias.
-- Calcular e armazenar pontuações.
-- Apresentar um ranking de resultados.
-- Aplicar boas práticas de desenvolvimento seguro.
+Abra http://localhost:3000. Use npm.cmd run dev para reinício automático. Em outros sistemas, use npm. Frontend e API compartilham a origem e usam /api em desenvolvimento e produção. Não abra o HTML via file://.
 
-## Tecnologias
+A configuração aceita BANCO_URL (prioridade), POSTGRES_URL ou BANCO_HOST, BANCO_PORTA, BANCO_NOME, BANCO_USUARIO e BANCO_SENHA. PORTA tem padrão 3000. BANCO_SSL=true ativa TLS; hosts Supabase usam backend/src/supabase-ca.crt com validação de cadeia e hostname. Variáveis do processo prevalecem sobre backend/.env. CORS_ORIGEM permite outra origem; o cliente padrão usa a mesma origem. Credenciais ficam exclusivamente no backend.
 
-| Tecnologia | Finalidade |
-|---|---|
-| HTML5 | Estrutura das páginas |
-| CSS3 | Estilização e responsividade |
-| JavaScript | Lógica do frontend e backend |
-| PostgreSQL | Persistência dos dados |
-| Git | Controle de versão |
-| GitHub | Colaboração e hospedagem do repositório |
+**Limitação:** entregas/ não existe. Os SQL em docs/doc_date/templates_origem/ contêm TODO e não criam o esquema e a massa usados pela API. Solicite as entregas completas à equipe para preparar um PostgreSQL local. Nenhum script de banco foi executado.
 
-O projeto não prevê o uso de frameworks. O ambiente de execução do backend deverá ser confirmado conforme as regras da disciplina.
+## Testes e build
 
-## Funcionalidades previstas
+~~~powershell
+npm.cmd test
+npm.cmd run build
+# Apenas com PostgreSQL local descartável e a massa original carregada:
+$env:BANCO_TESTE_URL = 'postgresql://usuario:senha@localhost:5432/tech_trivia_teste'
+npm.cmd run test:integracao
+~~~
 
-- [ ] Tela inicial
-- [ ] Exibição de perguntas e alternativas
-- [ ] Seleção e validação de respostas
-- [ ] Cálculo da pontuação
-- [ ] Tela de resultados
-- [ ] Armazenamento de resultados
-- [ ] Ranking de participantes
-- [ ] Organização das perguntas por categorias
+Os testes locais usam banco simulado e HTTP real para verificar assets, API, configuração TLS e caminhos. O build copia apenas frontend/ para public/. A suíte original foi preservada integralmente e exige exatamente 3 categorias e 8 perguntas. O executor exige URL local explícita. A massa de produção mencionada no histórico (20 perguntas) é incompatível com essas expectativas.
 
-## Estrutura planejada
+## Deploy — somente após aprovação
 
-```text
-Project-for-University---2026.2/
-├── docs/
-│   ├── documentacao.md
-│   ├── requisitos.md
-│   ├── arquitetura.md
-│   ├── banco-de-dados.md
-│   └── casos-de-uso.md
-├── quiz_cyberseguranca/
-│   ├── frontend/
-│   ├── backend/
-│   └── database/
-├── .gitignore
-└── README.md
-```
+Vercel: raiz deste repositório, Node 24.x, instalação npm ci, build npm run build e saída public/. O rewrite /api/:path* aponta para api/index.js; o bundle inclui o certificado TLS. Configure BANCO_URL ou POSTGRES_URL no ambiente autorizado, sem publicar .env.
 
-Esta é uma estrutura planejada. Os diretórios da aplicação podem ser criados durante a implementação.
+Antes de publicar, confira projeto, ambiente, credenciais de menor privilégio e validade da CA. Em preview autorizado, valide /api/saude, categorias e uma rodada completa. Testes locais não comprovam empacotamento remoto, rede ou acesso ao pooler. O limitador em memória atua por instância serverless. Nenhum push, merge, deploy ou acesso ao banco remoto foi realizado.
 
-## Documentação
+## Documentação preservada
 
-- [Minimundo](docs/minimundo.md)
+- [Documentação geral](docs/documentacao.md), [requisitos](docs/requisitos.md) e [arquitetura](docs/arquitetura.md).
+- [Banco](docs/banco-de-dados.md), [casos de uso](docs/casos-de-uso.md) e [minimundo](docs/minimundo.md).
+- [Conceitos](docs/conceitos-ciberseguranca.md) e [responsabilidades](docs/responsabilidades-banco-e-aplicacao.md).
+- [Templates e orientação](docs/doc_date/templates_origem/).
+- [Histórico Vercel](docs/INTEGRACAO-VERCEL.md), [diagnóstico](docs/diagnostico-organizacao.md) e [inventário](docs/inventario-movimentacao.md).
 
-- [Documentação geral](docs/documentacao.md)
-- [Requisitos](docs/requisitos.md)
-- [Arquitetura](docs/arquitetura.md)
-- [Banco de dados](docs/banco-de-dados.md)
-- [Casos de uso](docs/casos-de-uso.md)
-- [Conceitos de cibersegurança](docs/conceitos-ciberseguranca.md)
-- [Responsabilidades do banco e da aplicação](docs/responsabilidades-banco-e-aplicacao.md)
-
-## Requisitos para execução
-
-Quando a aplicação estiver implementada, serão necessários:
-
-- Navegador moderno.
-- PostgreSQL configurado.
-- Ambiente de execução JavaScript compatível com o backend.
-- Arquivos e configurações da aplicação.
-
-As instruções exatas de instalação e execução serão incluídas após a definição do ambiente e a implementação.
-
-## Segurança
-
-A aplicação deverá adotar validação no backend, consultas parametrizadas, proteção das respostas corretas, controle da lógica de pontuação, tratamento seguro de erros e proteção de credenciais.
-
-## Equipe
-
-| Integrante | Responsabilidades propostas |
-|---|---|
-| João | Backend e apoio à documentação técnica |
-| Maria | Frontend e interface |
-| Felipe | Banco de dados, integração, documentação geral e organização do repositório |
-
-A divisão é inicial e pode ser ajustada entre os integrantes.
-
-## Status
-
-**Em planejamento e documentação.**
-
-## Licença
-
-A licença do projeto deverá ser definida pela equipe e registrada em um arquivo `LICENSE`, caso seja necessária.
+Documentos acadêmicos originais foram preservados integralmente, inclusive referências históricas a caminhos ausentes. Este README contém as instruções operacionais atuais.

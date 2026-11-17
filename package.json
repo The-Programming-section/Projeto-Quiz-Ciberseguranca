@@ -1,17 +1,18 @@
 {
-  "name": "cyberquiz-backend",
-  "version": "1.0.0",
-  "description": "API do Tech Trivia de Cibersegurança (Node.js, sem frameworks)",
+  "name": "tech-trivia-vercel",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
-    "start": "node src/servidor.js",
-    "dev": "node --watch src/servidor.js",
-    "test": "node --test teste/api.test.js"
+    "start": "node backend/src/servidor.js",
+    "dev": "node --watch backend/src/servidor.js",
+    "build": "node scripts/build.mjs",
+    "test": "node --test backend/teste/estrutura.test.js",
+    "test:integracao": "node scripts/testar-integracao.mjs"
   },
   "dependencies": {
-    "pg": "^8.13.0"
+    "pg": "8.13.0"
   }
 }
-
