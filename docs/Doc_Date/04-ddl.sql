@@ -1,5 +1,5 @@
 -- Passo 7 — Modelo físico
--- Equipe: CyberQuiz (Tech Trivia) — João, Maria e Felipe Carvalho Pereira
+-- Equipe: CyberQuiz (Tech Trivia) — João Forastieri, Maria Eduarda Queiroz Corrêa e Felipe Carvalho Pereira
 -- PostgreSQL. Por que este SGBD: é o SGBD exigido pela disciplina (RNF01) e oferece PK, FK, UNIQUE, CHECK e NOT NULL declarativos para proteger a integridade no próprio banco.
 -- Contrato com Aplicativos para Web: os nomes abaixo são os acordados.
 -- Banco vazio:
