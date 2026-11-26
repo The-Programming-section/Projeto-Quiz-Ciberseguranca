@@ -8,7 +8,7 @@ Identifiquem uma vez, neste arquivo copiado para o repositório:
 | Campo       | Preenchimento |
 | ----------- | ------------- |
 | Equipe      | CyberQuiz (Tech Trivia — Quiz de Cibersegurança), a mesma de Aplicativos para Web |
-| Integrantes | João [sobrenome], Maria [sobrenome] e Felipe Carvalho Pereira |
+| Integrantes | João Forastieri, Maria Eduarda Queiroz Corrêa e Felipe Carvalho Pereira |
 | Repositório | https://github.com/The-Programming-section/Projeto-Quiz-Ciberseguranca |
 | Data        | 26/11/2026 |
 
