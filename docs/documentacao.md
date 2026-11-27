@@ -4,6 +4,7 @@
 **Disciplina:** Projeto Universitário  
 **Período:** 2026.2  
 **Integrantes:** João Forastieri, Maria Eduarda Queiroz Corrêa e Felipe Carvalho Pereira
+
 **Tecnologias previstas:** HTML5, CSS3, JavaScript e PostgreSQL
 
 ## 1. Introdução
